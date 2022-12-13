@@ -4,7 +4,7 @@
         <img src="#" alt=""
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">@lang('SMS Panel') <sup>v0.0.1-beta</sup></span>
+        <span class="brand-text font-weight-light">@lang('SMS Panel') <sup><i class="icon ion-usb"></i>&nbsp;v0.0.1-beta</sup></span>
 
     </a>
 {{--ionicons cheatsheet  https://ionic.io/ionicons/v2/cheatsheet.html--}}
@@ -33,6 +33,62 @@
 
                         </p>
                     </a>
+                </li>
+                @php
+
+                    $postRoutes = [
+                      'admin.media.create',
+                      'admin.media.edit',
+                      'admin.media.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($postRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="icon ion-paper-airplane"></i>
+                        <p>
+                            @lang('Send Message')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($postRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon ion-android-send"></i>&nbsp;
+                                <p>@lang('Single  Message')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-users"></i>&nbsp;
+                                <p>@lang('Group Message')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon ion-android-plane"></i>&nbsp;
+                                <p>@lang('Campaign Message')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon ion-android-upload"></i>&nbsp;
+                                <p>@lang('CSV/Excel Message')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="icon ion-android-time"></i>&nbsp;
+                                <p>@lang('Routine/Schedule Message')</p>
+
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 @php
 
