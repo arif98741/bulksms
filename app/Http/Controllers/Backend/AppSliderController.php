@@ -28,6 +28,7 @@ use Illuminate\Validation\ValidationException;
 class AppSliderController extends Controller
 {
     /**
+     * @param Request $request
      * @return Application|Factory|View
      */
     public function index(Request $request)
@@ -51,7 +52,7 @@ class AppSliderController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     * @return RedirectResponse
      * @throws ValidationException
      * @throws ValidationException
      */
