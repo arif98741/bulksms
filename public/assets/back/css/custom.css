@@ -39,6 +39,7 @@ body {
 .card {
     border-radius: 0px;
 }
+
 .card-header {
     background-color: #43a281;
     border-bottom: 1px solid rgba(0, 0, 0, .125);
@@ -74,16 +75,26 @@ body {
 .nav-sidebar ul.li > a {
     font-weight: 100 !important;
 }
+
 .nav-sidebar .nav-item > .nav-link {
     color: #fff !important;
 }
-ul>li>ul>li>a{
+
+.nav-sidebar .nav-treeview {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin-left: 5px;
+}
+
+ul > li > ul > li > a {
     font-size: 14px;
 }
 
 .nav-sidebar .nav-item > .nav-link {
-     margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .nav-sidebar > .nav-item .nav-icon {
     margin-left: 0.05rem;
     font-size: 1.2rem;
