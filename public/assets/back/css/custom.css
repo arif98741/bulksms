@@ -4,12 +4,14 @@
 }
 
 body {
-    /*font-family: solaimanlipi;*/
-    color: #444;
-    line-height: 22px;
-    font-size: 16px;
     margin: 0 auto;
     padding: 0;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.42857143;
+    color: #58666e;
+    background-color: transparent;
 }
 
 .form-control {
