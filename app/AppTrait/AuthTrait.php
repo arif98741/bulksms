@@ -52,7 +52,7 @@ trait AuthTrait
     public static function isProvider(bool $status = false): bool
     {
         $role_id = self::getUser()->role_id;
-        if ($role_id == 3) {
+        if ($role_id === 3) {
             $status = true;
         }
         return $status;
@@ -65,7 +65,7 @@ trait AuthTrait
     public static function isSeeker(bool $status = false): bool
     {
         $role_id = self::getUser()->role_id;
-        if ($role_id == 4) {
+        if ($role_id === 4) {
             $status = true;
         }
         return $status;
