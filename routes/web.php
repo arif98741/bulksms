@@ -9,3 +9,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/loggout', function (){
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+});
+

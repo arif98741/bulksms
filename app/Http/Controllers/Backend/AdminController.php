@@ -31,10 +31,8 @@ class AdminController extends Controller
     public function dashboard()
     {
         $data = [
-
         ];
         return view('backend.dashboard')->with($data);
     }
-
 
 }
