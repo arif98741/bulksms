@@ -1,160 +1,284 @@
-<div class="sidebar-wrapper sidebar-theme">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{{ route('backend.dashboard') }}" class="brand-link">
+        <img src="#" alt=""
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">@lang('SMS Panel') <sup>v0.0.1-beta</sup></span>
 
-    <nav id="sidebar">
-        <div class="shadow-bottom"></div>
-        <ul class="list-unstyled menu-categories ps ps--active-y" id="accordionExample">
-            <li class="menu">
-                <a href="{{ route('backend.admin.dashboard') }}" aria-expanded="false" class="dropdown-toggle"
-                   @if(route_exist_in_sidebar(['backend.admin.dashboard'])) data-active="true" @endif>
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-home">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                        <span>Dashboard</span>
-                    </div>
-                </a>
-            </li>
-
-            <li class="menu">
-                @php
-                    $customerRoutes = [
-                        'backend.user.create',
-                        'backend.user.edit',
-                        'backend.user.store',
-                        'backend.user.index',
-                        'backend.user.view-provider',
-                    ];
-                @endphp
-                <a href="#customerMenu" data-toggle="collapse"
-                   aria-expanded="@if(route_exist_in_sidebar($customerRoutes)) true @else false @endif"
-                   @if(route_exist_in_sidebar($customerRoutes)) data-active="true" @endif
-                   class="dropdown-toggle @if(!route_exist_in_sidebar($customerRoutes))collapsed @endif">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-users">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                        <span>User</span>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                </a>
-                <ul class="collapse submenu list-unstyled @if(route_exist_in_sidebar($customerRoutes)) show @endif"
-                    id="customerMenu" data-parent="#accordionExample">
-
-                    <li>
-                        <a href="{{ route('backend.user.index',['role' => 3]) }}">Provider</a>
-                        <a href="{{ route('backend.user.index',['role' => 4]) }}">Seeker</a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="menu">
+    </a>
+{{--ionicons cheatsheet  https://ionic.io/ionicons/v2/cheatsheet.html--}}
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
 
                 @php
-                    $accessLogRoutes = [
-                        'backend.user-access-log.index',
-                        'backend.user-access-log.destroy',
-                        'backend.user-activity-log.index',
+
+                    $dashboardRoutes = [
+                      'admin.dashboard',
                     ];
+
                 @endphp
 
-                <a href="#accessLogMenu" data-toggle="collapse"
-                   aria-expanded="@if(route_exist_in_sidebar($accessLogRoutes)) true @else false @endif"
-                   @if(route_exist_in_sidebar($accessLogRoutes)) data-active="true" @endif
-                   class="dropdown-toggle @if(!route_exist_in_sidebar($accessLogRoutes))collapsed @endif">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-mouse-pointer">
-                            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
-                            <path d="M13 13l6 6"></path>
-                        </svg>
-                        <span>Accessibility Log</span>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                </a>
-                <ul class="collapse submenu list-unstyled @if(route_exist_in_sidebar($accessLogRoutes)) show @endif"
-                    id="accessLogMenu" data-parent="#accordionExample">
-                    <li><a href="{{ route('backend.user-access-log.index') }}">AccessLog</a></li>
-                    <li><a href="{{ route('backend.user-activity-log.index') }}">Activity Log</a></li>
-                </ul>
-            </li>
+                <li class="nav-item @if(route_exist_in_sidebar($dashboardRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="{{ route('backend.dashboard') }}" class="nav-link ">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            @lang('Dashboard')
 
-            @can(['add role','edit role'])
-                <li class="menu">
-
-                    @php
-                        $permissionRoutes = [
-                            'admin.role.create',
-                            'admin.role.index',
-                            'admin.role.show',
-                             'admin.permission.create',
-                            'admin.permission.index',
-                            'admin.permission.show',
-                        ];
-                    @endphp
-
-                    <a href="#permissionMenu" data-toggle="collapse"
-                       aria-expanded="@if(route_exist_in_sidebar($permissionRoutes)) true @else false @endif"
-                       @if(route_exist_in_sidebar($permissionRoutes)) data-active="true" @endif
-                       class="dropdown-toggle @if(!route_exist_in_sidebar($permissionRoutes))collapsed @endif">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-shield">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                            <span>Role and Permission</span>
-                        </div>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-chevron-right">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </div>
+                        </p>
                     </a>
-                    <ul class="collapse submenu list-unstyled @if(route_exist_in_sidebar($permissionRoutes)) show @endif"
-                        id="permissionMenu" data-parent="#accordionExample">
-                        <li><a href="{{ route('admin.role.index') }}">Role List</a></li>
-                        <li><a href="{{ route('admin.role.create') }}"> Add Role</a></li>
-                        <li><a href="{{ route('admin.permission.index') }}"> Permission List</a></li>
-                        <li><a href="{{ route('admin.permission.create') }}"> Add Permission</a></li>
+                </li>
+                @php
+
+                    $postRoutes = [
+                      'admin.media.create',
+                      'admin.media.edit',
+                      'admin.media.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($postRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            @lang('Contact Groups')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($postRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-users nav-icon"></i>
+                                <p>@lang('Add')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('List')</p>
+
+                            </a>
+                        </li>
                     </ul>
                 </li>
-            @endcan
+                @php
+
+                    $postRoutes = [
+                      'admin.post.create',
+                      'admin.post.edit',
+                      'admin.post.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($postRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            @lang('Contacts')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($postRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-user nav-icon"></i>
+                                <p>@lang('Add')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('List')</p>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                @php
+
+                    $categoryRoutes = [
+                      'admin.category.create',
+                      'admin.category.edit',
+                      'admin.category.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($categoryRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            @lang('Categories')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($categoryRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Add Categories')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Category List')</p>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @php
+
+                    $tagRoutes = [
+                      'admin.tag.create',
+                      'admin.tag.edit',
+                      'admin.tag.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($tagRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="icon ion-android-chat"></i>&nbsp;
+                        <p>
+                            @lang('Sms Template')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($tagRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Add Tag')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Tag List')</p>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @php
+
+                    $reportRoutes = [
+                      'admin.tag.create',
+                      'admin.tag.edit',
+                      'admin.tag.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($reportRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="icon ion-arrow-graph-down-left"></i>&nbsp;
+                        <p>
+                            @lang('Reports')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($reportRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Add Tag')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Tag List')</p>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                @php
+
+                    $userRoutes = [
+                      'admin.tag.create',
+                      'admin.tag.edit',
+                      'admin.tag.index',
+                    ];
+
+                @endphp
+                <li class="nav-item @if(route_exist_in_sidebar($userRoutes)) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="ion-android-people"></i>&nbsp;
+                        <p>
+                            @lang('Users')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview"
+                        @if(route_exist_in_sidebar($userRoutes)) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Add User')</p>
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('User List')</p>
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
-            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-            </div>
-            <div class="ps__rail-y" style="top: 0px; height: 518px; right: -4px;">
-                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 239px;"></div>
-            </div>
-        </ul>
+                <li class="nav-item @if(route_exist_in_sidebar([])) menu-is-opening menu-open @else @endif">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            @lang('Setting')
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" @if(route_exist_in_sidebar([])) style="display: block" @else @endif>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-plus nav-icon"></i>
+                                <p>@lang('Add Tag')</p>
 
-    </nav>
+                            </a>
+                        </li>
 
-</div>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url('/loggout') }}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            @lang('Logout')
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
