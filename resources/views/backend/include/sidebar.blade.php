@@ -313,10 +313,17 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview" @if(route_exist_in_sidebar([])) style="display: block" @else @endif>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="far fa-plus nav-icon"></i>
-                                <p>@lang('Add Tag')</p>
+                                <i class="icon ion-planet"></i>&nbsp;
+                                <p>@lang('Gateways')</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cog"></i>&nbsp;
+                                <p>@lang('General Setting')</p>
 
                             </a>
                         </li>
