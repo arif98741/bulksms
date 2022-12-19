@@ -22,6 +22,10 @@ Route::group([
         Route::resource('user-access-log', 'AccessLogController')->only(['index', 'destroy']);
         Route::resource('user-activity-log', 'ActivityLogController')->only(['index']);
     });
+
+    Route::group(['namespace' => 'Contact','prefix' =>'contact','as' => 'contact.'], static function () {
+        Route::resource('group', 'ContactGroupController')->except(['show']);
+    });
 });
 
 Route::get('logoutlink', static function () {
