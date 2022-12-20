@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->foreign('updated_by')->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('set null');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

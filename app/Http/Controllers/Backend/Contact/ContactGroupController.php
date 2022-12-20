@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Contact;
 
+use App\Facades\AppFacade;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use Illuminate\Contracts\Foundation\Application;
@@ -9,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class ContactGroupController extends Controller
@@ -19,7 +21,7 @@ class ContactGroupController extends Controller
     public function index()
     {
         $data = [
-            'coupons' => Group::orderBy('created_at', 'desc')->get(),
+            'groups' => Group::where('created_by', self::getUserId())->orderBy('created_at', 'desc')->get(),
             'title' => 'Groups'
         ];
 
@@ -31,8 +33,6 @@ class ContactGroupController extends Controller
      */
     public function create()
     {
-
-
         $data = [
             'title' => 'Create Contact Group'
         ];
@@ -47,31 +47,29 @@ class ContactGroupController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
-            'name' => 'required|min:3|max:5',
+            'name' => 'required|min:3|max:50',
         ], [
             'name.required' => 'The group name field is required.',
             'name.min' => 'The group name field should be at least 3 characters',
             'name.max' => 'The group name field should not contain more than 5 characters.',
         ]);
-        if ($this->isDataExist('groups', ['name' => $request->name])) {
 
+        if ($this->isDataExist('groups', ['name' => $request->name])) {
             return redirect()->route('backend.contact.group.create')->with(
                 [
                     'message' => 'Group already exist',
-                    'alert-type' => 'error'
+                    'type' => 'error'
                 ]
             );
         }
         $data['created_by'] = self::getUserId();
 
         if (Group::create($data)) {
-            // AppFacade::generateActivityLog('coupons','create',DB::getPdo()->lastInsertId());
-            return redirect()->route('backend.contact.group.index')->with(
-                [
-                    'a' => 'Group added successfully to system',
-                    'type' => 'success'
-                ]
-            );
+            AppFacade::generateActivityLog('groups', 'create', DB::getPdo()->lastInsertId());
+            return redirect()->route('backend.contact.group.index')->with([
+                'message' => 'Group added successfully to system',
+                'type' => 'success',
+            ]);
         }
 
         return redirect()->back()->with(
@@ -115,7 +113,7 @@ class ContactGroupController extends Controller
         ]);
 
         if ($group->update($data)) {
-            //   AppFacade::generateActivityLog('coupons','update',$group->id);
+            AppFacade::generateActivityLog('coupons', 'update', $group->id);
             return redirect()->route('backend.coupon.index')->with(['message' => 'Group updated successfully',
                 'alert-type' => 'success']);
         }
@@ -132,13 +130,18 @@ class ContactGroupController extends Controller
     public function destroy(Group $group)
     {
         if ($group->delete()) {
-            //  AppFacade::generateActivityLog('coupons','delete',$group->id);
-            return redirect()->route('backend.coupon.index')->with(['message' => 'Group deleted successfully',
-                'alert-type' => 'success']);
+            AppFacade::generateActivityLog('groups', 'delete', DB::getPdo()->lastInsertId());
+            return redirect()->route('backend.contact.group.index')->with([
+                'message' => 'Group successfully deleted',
+                'type' => 'success',
+            ]);
         }
-
-        return redirect()->back()->with(['message' => 'Failed to delete lab',
-            'alert-type' => 'error']);
+        return redirect()->back()->with(
+            [
+                'message' => 'Failed to delete group',
+                'type' => 'error'
+            ]
+        );
     }
 
 }

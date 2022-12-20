@@ -10,7 +10,7 @@ trait QueryTrait
     use AuthTrait;
 
     /**
-     * Data Existance Check for Individual User
+     * Data Existence Check for Individual User
      * @param string $table
      * @param array $where
      * @return bool

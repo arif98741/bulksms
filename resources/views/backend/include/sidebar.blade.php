@@ -93,9 +93,9 @@
                 @php
 
                     $postRoutes = [
-                      'admin.media.create',
-                      'admin.media.edit',
-                      'admin.media.index',
+                      'backend.contact.group.create',
+                      'backend.contact.group.index',
+                      'backend.contact.group.edit',
                     ];
 
                 @endphp
