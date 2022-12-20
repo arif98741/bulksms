@@ -68,8 +68,8 @@ class ContactGroupController extends Controller
             // AppFacade::generateActivityLog('coupons','create',DB::getPdo()->lastInsertId());
             return redirect()->route('backend.contact.group.index')->with(
                 [
-                    'message' => 'Group added successfully to system',
-                    'alert-type' => 'success'
+                    'a' => 'Group added successfully to system',
+                    'type' => 'success'
                 ]
             );
         }
@@ -77,7 +77,7 @@ class ContactGroupController extends Controller
         return redirect()->back()->with(
             [
                 'message' => 'Failed to add group',
-                'alert-type' => 'error'
+                'type' => 'error'
             ]
         );
     }
