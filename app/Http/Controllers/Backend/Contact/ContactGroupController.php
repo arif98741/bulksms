@@ -31,6 +31,8 @@ class ContactGroupController extends Controller
      */
     public function create()
     {
+
+
         $data = [
             'title' => 'Create Contact Group'
         ];
@@ -51,21 +53,31 @@ class ContactGroupController extends Controller
             'name.min' => 'The group name field should be at least 3 characters',
             'name.max' => 'The group name field should not contain more than 5 characters.',
         ]);
+        if ($this->isDataExist('groups', ['name' => $request->name])) {
+
+            return redirect()->route('backend.contact.group.create')->with(
+                [
+                    'message' => 'Group already exist',
+                    'alert-type' => 'error'
+                ]
+            );
+        }
+        $data['created_by'] = self::getUserId();
 
         if (Group::create($data)) {
-           // AppFacade::generateActivityLog('coupons','create',DB::getPdo()->lastInsertId());
-            return redirect()->route('backend.coupon.index')->with(
+            // AppFacade::generateActivityLog('coupons','create',DB::getPdo()->lastInsertId());
+            return redirect()->route('backend.contact.group.index')->with(
                 [
-                    'message' => 'Group added successfully to system',
-                    'alert-type' => 'success'
+                    'a' => 'Group added successfully to system',
+                    'type' => 'success'
                 ]
             );
         }
 
         return redirect()->back()->with(
             [
-                'message' => 'Failed to add lab',
-                'alert-type' => 'error'
+                'message' => 'Failed to add group',
+                'type' => 'error'
             ]
         );
     }
@@ -103,7 +115,7 @@ class ContactGroupController extends Controller
         ]);
 
         if ($group->update($data)) {
-         //   AppFacade::generateActivityLog('coupons','update',$group->id);
+            //   AppFacade::generateActivityLog('coupons','update',$group->id);
             return redirect()->route('backend.coupon.index')->with(['message' => 'Group updated successfully',
                 'alert-type' => 'success']);
         }
@@ -120,7 +132,7 @@ class ContactGroupController extends Controller
     public function destroy(Group $group)
     {
         if ($group->delete()) {
-          //  AppFacade::generateActivityLog('coupons','delete',$group->id);
+            //  AppFacade::generateActivityLog('coupons','delete',$group->id);
             return redirect()->route('backend.coupon.index')->with(['message' => 'Group deleted successfully',
                 'alert-type' => 'success']);
         }
