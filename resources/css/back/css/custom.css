@@ -1,0 +1,106 @@
+@font-face {
+    font-family: solaimanlipi;
+    src: url(../fonts/solaimanlipi.ttf) format("opentype")
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.42857143;
+    color: #58666e;
+    background-color: transparent;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.select2-search__field {
+    border-radius: 0px;
+}
+
+.select2-container--default .select2-selection--multiple {
+
+    border-radius: 4px !important;
+
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #08020c !important;
+}
+
+.card {
+    border-radius: 0px;
+}
+
+.card-header {
+    background-color: #43a281;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    padding: 0.75rem 1.25rem;
+    position: relative;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.small-box {
+    border-radius: 0px;
+    box-shadow: 0 0 0 0;
+
+}
+
+/** sidebar customization */
+.main-sidebar {
+    height: 100vh;
+    overflow-y: hidden;
+    z-index: 1038;
+    background-color: #41a180fc;
+}
+
+.navbar-white {
+    background-color: #41a180fc;
+    /* color: #1f2d3d; */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.nav-sidebar ul.li > a {
+    font-weight: 100 !important;
+}
+
+.nav-sidebar .nav-item > .nav-link {
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-treeview {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin-left: 5px;
+}
+
+ul > li > ul > li > a {
+    font-size: 14px;
+}
+
+.nav-sidebar .nav-item > .nav-link {
+    margin-bottom: 0;
+}
+
+.nav-sidebar > .nav-item .nav-icon {
+    margin-left: 0.05rem;
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+    text-align: center;
+    width: 1.6rem;
+    font-size: .9rem !important;
+}
+

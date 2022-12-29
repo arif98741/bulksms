@@ -20,3 +20,5 @@ yarn-error.log
 *.zip
 *.iml
 *.log
+public/css
+public/js
