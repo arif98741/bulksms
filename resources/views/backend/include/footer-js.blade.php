@@ -1,65 +1,47 @@
-<script src="{{ asset('backend/assets/libs/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap tether Core JavaScript -->
-<script src="{{ asset('backend/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
-<script src="{{ asset('backend/assets/extra-libs/sparkline/sparkline.js')}}"></script>
-<!--Wave Effects -->
-<script src="{{ asset('backend/dist/js/waves.js')}}"></script>
-<!--Menu sidebar -->
-<script src="{{ asset('backend/dist/js/sidebarmenu.js')}}"></script>
-<!--Custom JavaScript -->
-<script src="{{ asset('backend/dist/js/custom.min.js')}}"></script>
-<!--This page JavaScript -->
-<!-- <script src="{{ asset('backend/assets/js/pages/dashboards/dashboard1.js')}}"></script> -->
-<!-- Charts js Files -->
-<script src="{{ asset('backend/assets/libs/flot/excanvas.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot/jquery.flot.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot/jquery.flot.pie.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot/jquery.flot.time.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot/jquery.flot.stack.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
-<script src="{{ asset('backend/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
-<script src="{{ asset('backend/assets/js/pages/chart/chart-page-init.js')}}"></script>
-<script src="{{ asset('backend/dist/js/toastr.min.js')}}"></script>
-
-<script type="text/javascript">
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "200",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
-
-    const type = "{{ Session::get('alert-type') }}";
-    switch (type) {
-
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
-
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
+<script src="{{ asset('assets/back/plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('assets/back/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
-@stack('extra-script')
+<!-- Bootstrap 4 -->
+<script src="{{ asset('assets/back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{ asset('assets/back/plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{ asset('assets/back/plugins/sparklines/sparkline.js')}}"></script>
+<!-- JQVMap -->
+<script src="{{ asset('assets/back/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<script src="{{ asset('assets/back/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<script src="{{ asset('assets/back/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 
+<!-- overlayScrollbars -->
+<script src="{{ asset('assets/back/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('assets/back/dist/js/adminlte.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('assets/back/dist/js/demo.js')}}"></script>
+<script src="{{ asset('assets/back/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{ asset('assets/back/js/toastr.min.js')}}"></script>
+@stack('extra-script')
+<script type="text/javascript">
+
+    @if(session()->has('type'))
+    @php
+        $alertType = session()->get('type');;
+        $alertMessage = session()->get('message');
+    @endphp
+
+    @if($alertType == 'success')
+    toastr.success('{{ $alertMessage }}');
+    @endif
+    @if($alertType == 'warning')
+    toastr.warning('{{ $alertMessage }}');
+    @endif
+    @if($alertType == 'error')
+    toastr.error('{{ $alertMessage }}');
+    @endif
+
+    @endif
+</script>

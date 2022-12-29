@@ -12,9 +12,10 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.1",
         "spatie/laravel-permission": "^5.7",
-        "xenon/laravelbdsms": "v1.0.46.1"
+        "xenon/laravelbdsms": "^v1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",

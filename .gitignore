@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+public/dist
 .env
 .env.backup
 .env.production
@@ -19,3 +20,5 @@ yarn-error.log
 *.zip
 *.iml
 *.log
+public/css
+public/js

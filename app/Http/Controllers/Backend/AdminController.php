@@ -20,6 +20,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -31,10 +32,8 @@ class AdminController extends Controller
     public function dashboard()
     {
         $data = [
-
         ];
         return view('backend.dashboard')->with($data);
     }
-
 
 }

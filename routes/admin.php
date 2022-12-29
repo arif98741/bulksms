@@ -13,16 +13,18 @@ Route::group([
 
 ], static function () {
 
-    Route::get('dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
     Route::resource('/user', 'UserController')->except(['show']);
     Route::get('/user/view-provider/{id}', 'UserController@viewProvider')->name('user.view-provider');
     Route::post('/user/change-approve-status/{id}', 'UserController@changeApproveStatus')->name('user.change-approve-status');
-    Route::get('/user-files/{id}', 'UserController@userFiles');
-
 
     Route::group(['namespace' => 'Log'], static function () {
         Route::resource('user-access-log', 'AccessLogController')->only(['index', 'destroy']);
         Route::resource('user-activity-log', 'ActivityLogController')->only(['index']);
+    });
+
+    Route::group(['namespace' => 'Contact','prefix' =>'contact','as' => 'contact.'], static function () {
+        Route::resource('group', 'ContactGroupController')->except(['show']);
     });
 });
 
