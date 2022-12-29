@@ -10,7 +10,8 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    @include('backend.include.header-css')
+{{--    @include('backend.include.header-css')--}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -35,6 +36,9 @@
 
 
 <!-- jQuery -->
-@include('backend.include.footer-js')
+<script src="{{ asset('assets/back/plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('assets/back/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
